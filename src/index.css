@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: #1a1f2e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4e5f7b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #647895;
+}
+
+/* Canvas container for Three.js */
+canvas {
+  touch-action: none;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent;
+}
+
+/* Glass effect */
+.glass {
+  @apply bg-white/20 dark:bg-dark-800/30 backdrop-blur-lg;
+}
