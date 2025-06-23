@@ -55,7 +55,7 @@ export const projects: Project[] = [
     title: "Cinema Ticket Booking App",
     shortDescription: "Mobile app for booking movie tickets with real-time seat updates.",
     description: `Built a ticket booking app that allows users to view and book available movie seats in real time. Streamlined booking flow to improve overall experience.`,
-    image: "/img/cinema-booking.jpg",
+    image: "/img/cinematicketbookingapp.png",
     technologies: ["React Native", "JavaScript"],
     features: [
       "Live seat availability",

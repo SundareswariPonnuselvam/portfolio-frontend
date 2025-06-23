@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const HeroSection: React.FC = () => {
@@ -7,6 +7,32 @@ const HeroSection: React.FC = () => {
     threshold: 0.1,
     triggerOnce: false,
   });
+
+  const imageControls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      // Zoom in
+      await imageControls.start({ scale: 1.2, transition: { duration: 1 } });
+
+      // Zoom out
+      await imageControls.start({ scale: 1, transition: { duration: 1 } });
+
+      // Start gentle dance loop
+      imageControls.start({
+        scale: [1, 1.03, 1],
+        y: [0, -10, 0, 10, 0],
+        rotate: [0, 2, 0, -2, 0],
+        transition: {
+          duration: 6,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        },
+      });
+    };
+
+    sequence();
+  }, [imageControls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -30,33 +56,12 @@ const HeroSection: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center">
-      <motion.div
-        className="absolute inset-0 z-0 flex justify-center items-center"
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{
-          opacity: 1,
-          y: [0, -15, 0],
-          scale: [1, 1.03, 1],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      >
-        <motion.img
-          src="/img/1ts.jpg"
-          alt="Tech Image"
-          className="w-[400px] h-[400px] object-contain"
-        />
-      </motion.div>
-
-
-      <div className="relative z-10 container mx-auto px-6 md:px-12 py-24 flex flex-col md:flex-row items-center">
+      <div className="container mx-auto px-6 md:px-12 py-24 flex flex-col md:flex-row items-center justify-between">
+        {/* Left side: Text */}
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          animate={inView ? 'visible' : 'hidden'}
           variants={containerVariants}
           className="w-full md:w-1/2 mb-12 md:mb-0"
         >
@@ -87,7 +92,6 @@ const HeroSection: React.FC = () => {
             variants={itemVariants}
             className="text-base md:text-lg text-dark-600 dark:text-dark-300 mb-8 max-w-lg"
           >
-
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
@@ -109,8 +113,25 @@ const HeroSection: React.FC = () => {
             </motion.a>
           </motion.div>
         </motion.div>
+
+        {/* Right side: Animated Image */}
+        <motion.div
+          className="w-full md:w-1/2 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.img
+            src="/img/1ts.jpg"
+            alt="Tech Image"
+            className="w-[300px] md:w-[400px] h-auto object-contain"
+            initial={{ scale: 1 }}
+            animate={imageControls}
+          />
+        </motion.div>
       </div>
 
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
