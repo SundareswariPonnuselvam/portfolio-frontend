@@ -6,7 +6,7 @@ import { Send, Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
 const ContactSection: React.FC = () => {
   const [ref] = useInView({
     threshold: 0.1,
-    triggerOnce: true, 
+    triggerOnce: true,
   });
 
   const [formState, setFormState] = useState({
@@ -26,35 +26,36 @@ const ContactSection: React.FC = () => {
     });
   };
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  try {
-    const response = await fetch('http://localhost:5000/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formState),
-    });
+    try {
+      const response = await fetch('https://portfolio-backend-r2nc.onrender.com/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (result.success) {
-      setIsSubmitted(true);
-      setFormState({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 5000);
-    } else {
-      alert('Something went wrong!');
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormState({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        alert('Something went wrong!');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Server error. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Server error. Please try again later.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,13 +109,13 @@ const ContactSection: React.FC = () => {
           variants={containerVariants}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-3xl md:text-4xl font-bold text-dark-900 dark:text-white mb-4"
           >
             Get In <span className="bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent">Touch</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             variants={itemVariants}
             className="text-dark-600 dark:text-dark-300 max-w-2xl mx-auto"
           >
@@ -123,7 +124,7 @@ const ContactSection: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible" // ✅ replaces animate
@@ -131,7 +132,7 @@ const ContactSection: React.FC = () => {
             className="lg:col-span-2 space-y-8"
           >
             {contactInfo.map((item, index) => (
-              <motion.div 
+              <motion.div
                 key={index}
                 variants={itemVariants}
                 className="flex items-start gap-4 bg-white dark:bg-dark-800 p-6 rounded-xl shadow-md"
@@ -153,7 +154,7 @@ const ContactSection: React.FC = () => {
             ))}
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible" // ✅ replaces animate
@@ -236,9 +237,8 @@ const ContactSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-medium rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg'
-                    }`}
+                    className={`w-full px-6 py-3 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-medium rounded-lg flex items-center justify-center space-x-2 transition-all duration-300 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:shadow-lg'
+                      }`}
                   >
                     <span>Send Message</span>
                     {isSubmitting ? (
