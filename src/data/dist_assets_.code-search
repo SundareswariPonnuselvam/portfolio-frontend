@@ -1,0 +1,17 @@
+# Query: dist/assets/
+# ContextLines: 1
+
+3 results - 1 file
+
+src\data\projects.ts:
+   9      description: `Developed a robust e-commerce platform supporting subscriptions with advanced product search, filtering, and pagination. Used PySpark to process large-scale customer data to improve recommendations and user personalization.`,
+  10:     image: "/ecommerce front page.png",
+  11      technologies: ["HTML", "CSS", "JavaScript", "AJAX", "PHP", "MySQL", "PySpark"],
+
+  25      description: `Built a data-driven HR platform to streamline leave requests, approvals, and performance tracking. Leveraged PySpark for analytics and trend identification to support HR decision-making.`,
+  26:     image: "dist/assets/hrmanagement.png",
+  27      technologies: ["Laravel", "MySQL", "PySpark"],
+
+  41      description: `Designed and optimized the 24-Rides customer app interface, ensuring smooth usability. Integrated real-time tracking using Google Maps for accurate navigation.`,
+  42:     image: "dist/assets/auto booking image.png",
+  43      technologies: ["React Native", "Redux", "JavaScript"],

@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
         }}
       >
         <motion.img
-          src="\public\img\1ts.jpg"
+          src="/img/1ts.jpg"
           alt="Tech Image"
           className="w-[400px] h-[400px] object-contain"
         />
@@ -87,7 +87,7 @@ const HeroSection: React.FC = () => {
             variants={itemVariants}
             className="text-base md:text-lg text-dark-600 dark:text-dark-300 mb-8 max-w-lg"
           >
-           
+
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
