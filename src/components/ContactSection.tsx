@@ -37,7 +37,7 @@ const ContactSection: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formState),
-      });
+      }); 
 
       const result = await response.json();
 
