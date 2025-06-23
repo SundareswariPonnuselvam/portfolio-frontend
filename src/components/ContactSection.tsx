@@ -41,7 +41,7 @@ const ContactSection: React.FC = () => {
 
     const result = await response.json();
 
-    if (result.success) {
+    if (result.ok) {
       setIsSubmitted(true);
       setFormState({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSubmitted(false), 5000);
