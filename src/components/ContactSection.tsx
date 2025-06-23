@@ -30,30 +30,27 @@ const ContactSection: React.FC = () => {
   e.preventDefault();
   setIsSubmitting(true);
 
- try {
-  const response = await fetch('https://portfolio-backend-r2nc.onrender.com/api/contact', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(formState),
-  });
+const response = await fetch('https://portfolio-backend-r2nc.onrender.com/api/contact', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formState),
+});
 
-  const result = await response.json();
+const result = await response.json();
+console.log('LIVE RESPONSE:', result); // For debugging
 
-  if (response.ok) {
-    setIsSubmitted(true);
-    setFormState({ name: '', email: '', subject: '', message: '' });
-    setTimeout(() => setIsSubmitted(false), 5000);
-  } else {
-    alert(result.error || 'Something went wrong!');
-  }
-} catch (error) {
-  console.error('Error:', error);
-  alert('Server error. Please try again later.');
+if (response.ok) {
+  setIsSubmitted(true);
+  setFormState({ name: '', email: '', subject: '', message: '' });
+  setTimeout(() => setIsSubmitted(false), 5000);
+} else {
+  alert(result.error || 'Something went wrong!');
 }
 
-};
+
+};  
 
 
 
