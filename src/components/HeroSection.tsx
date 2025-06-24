@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
           <motion.p
             variants={itemVariants}
             className="text-base md:text-lg text-dark-600 dark:text-dark-300 mb-8 max-w-lg"
-          >I’m a software developer passionate about building websites and mobile apps that are fast and easy to use. I’ve worked on projects like e-commerce, ride booking, and HR systems using Laravel, React Native, and PySpark. I love solving problems, collaborating with teams, and writing clean code. I’m open to remote work and new opportunities where I can grow and make an impact.</motion.p>
+          >I’m a software developer passionate about building websites and mobile apps that are fast and easy to use. I’ve worked on projects like e-commerce, ride booking, and HR systems using Laravel, React Native, and PySpark. I love solving problems, collaborating with teams, and writing clean code. I’m open to  work and new opportunities where I can grow and make an impact.</motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
             <motion.a
