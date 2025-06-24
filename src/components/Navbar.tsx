@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
   ];
 
   const socialLinks = [
-    { icon: <Github size={20} />, href: 'https://github.com', label: 'GitHub' },
+    { icon: <Github size={20} />, href: 'https://github.com/SundareswariPonnuselvam', label: 'GitHub' },
     { icon: <Linkedin size={20} />, href: 'https://www.linkedin.com/in/sundareswari-ponnuselvam-aa1a8831b/', label: 'LinkedIn' },
   ];
 
