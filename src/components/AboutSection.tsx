@@ -97,7 +97,6 @@ const AboutSection: React.FC = () => {
               requirements into streamlined experiences.
             </p>
           </motion.div>
-
           <motion.div variants={itemVariants}>
             <h3 className="text-xl font-bold text-dark-900 dark:text-white mb-8 text-center">
               My Journey

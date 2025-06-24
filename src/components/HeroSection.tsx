@@ -3,22 +3,28 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const HeroSection: React.FC = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.1,
-    triggerOnce: false,
-  });
-
+  const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: false });
   const imageControls = useAnimation();
 
   useEffect(() => {
     const sequence = async () => {
-      // Zoom in
-      await imageControls.start({ scale: 1.2, transition: { duration: 1 } });
+      // Step 1: Start zoomed and centered (full screen feel)
+      await imageControls.start({
+        scale: 2,
+        x: 0,
+        y: 0,
+        transition: { duration: 1.5 },
+      });
 
-      // Zoom out
-      await imageControls.start({ scale: 1, transition: { duration: 1 } });
+      // Step 2: Shrink and shift to right side
+      await imageControls.start({
+        scale: 1,
+        x: 200, // adjust based on layout
+        y: 0,
+        transition: { duration: 1.2 },
+      });
 
-      // Start gentle dance loop
+      // Step 3: Begin dance loop
       imageControls.start({
         scale: [1, 1.03, 1],
         y: [0, -10, 0, 10, 0],
@@ -55,15 +61,15 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center">
-      <div className="container mx-auto px-6 md:px-12 py-24 flex flex-col md:flex-row items-center justify-between">
-        {/* Left side: Text */}
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12 py-24 flex flex-col md:flex-row items-center justify-between relative z-10">
+        {/* Left content */}
         <motion.div
           ref={ref}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={containerVariants}
-          className="w-full md:w-1/2 mb-12 md:mb-0"
+          className="w-full md:w-1/2 mb-12 md:mb-0 z-20"
         >
           <motion.p
             variants={itemVariants}
@@ -91,8 +97,7 @@ const HeroSection: React.FC = () => {
           <motion.p
             variants={itemVariants}
             className="text-base md:text-lg text-dark-600 dark:text-dark-300 mb-8 max-w-lg"
-          >
-          </motion.p>
+          >I’m a software developer passionate about building websites and mobile apps that are fast and easy to use. I’ve worked on projects like e-commerce, ride booking, and HR systems using Laravel, React Native, and PySpark. I love solving problems, collaborating with teams, and writing clean code. I’m open to remote work and new opportunities where I can grow and make an impact.</motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
             <motion.a
@@ -114,24 +119,19 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
 
-        {/* Right side: Animated Image */}
-        <motion.div
-          className="w-full md:w-1/2 flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
+        {/* Right animated image */}
+        <motion.div className="w-full md:w-1/2 flex justify-center z-10">
           <motion.img
             src="/img/1ts.jpg"
             alt="Tech Image"
             className="w-[300px] md:w-[400px] h-auto object-contain"
-            initial={{ scale: 1 }}
+            initial={{ scale: 2 }}
             animate={imageControls}
           />
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
